@@ -1,0 +1,63 @@
+{% load staticfiles %}
+{% load humanize %}
+<html>
+<head>
+	<title>{{ title }}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'btp/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'btp/css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'btp/css/font-awesome.min.css' %}">
+	<script src="{% static 'btp/js/jquery.js' %}"></script>
+	<script src="{% static 'btp/js/script.js' %}"></script>
+
+</head>
+<body>
+	{% include "nav.html" %}
+	<div class="container content-wrapper">
+		<h3>Table of Contents</h3>
+		<ul>
+			<li><a href="#doc-events">Events and Deadlines</a></li>
+			<li><a href="">Posting a Project by Faculty </a></li>
+			<li><a href="">Posting Preferences by Students </a></li>
+			<li><a href="">Marking taken Projects by Faculties </a></li>
+		</ul>
+		<hr>
+		<div id="doc-events">
+			<h3>Events and Deadlines</h3>
+			<ul>
+				{% for event in events %}
+					<li><span class="event-date">
+						{% if event.startdate != event.enddate %}
+						{{ event.startdate | date:'d M' }} -
+						{% endif %}
+						{{ event.enddate | date:'d M Y' }} 
+						</span>
+						<p class="event-title">{{ event.event}}</p>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<hr>
+		<div id="doc-post-project">
+			<h3>Posting a Project</h3>
+			<h4 class="text-muted">How to Post a Project</h4>
+			<p>To post a project, you need to be logged-in as a faculty. To login, visit the home page and enter your email (iiits mail) and password. After logging in, a button appears that reads Post a Project . Click on the button to view the Project Entry form.
+			</p>
+			<p>
+				Please fill in all the fields in the form and submit the form. Visit the Projects page or Faculty page to view the changes.
+			</p>
+			<h4 class="text-muted">Constraints on posting projects</h4>
+		</div>
+		<hr>
+		<div id="doc-post-preference">
+			
+		</div>
+		<hr>
+		<div id="doc-mark-taken">
+			
+		</div>	
+	</div>
+	<div id="footer">
+		<center>Developed by <abbr title="A project of NSA, IIITS">Sahal Sajjad</abbr></center>
+	</div>
+</body>
+</html>

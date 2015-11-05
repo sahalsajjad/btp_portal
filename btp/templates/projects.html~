@@ -1,0 +1,63 @@
+{% load staticfiles %}
+{% load humanize %}
+
+<html>
+{% include "head.html" %}
+<body>
+	{% include "nav.html" %}
+	{% include "subheader.html" %}
+	<div class="container content-wrapper">
+	
+	<div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+		<br><br>
+		{% if projects_flag %}
+		<br><br><br><br><h2 style="color:grey;"><center>{{ projects_flag_message }}</center></h2>
+		 
+		{% endif %}
+		
+		{% if not projects_flag %}
+		{% for project in projects %}
+		
+		  {% if not project.dont_show_project %}
+			
+			<span class="project-title"><a class="text-success">{{ project.title }}</a></span>
+				{% if project.editable %}
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span><a href="/project/add/{{ project.id }}">Add Faculty</a></span>	
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span><a href="/project/edit/{{ project.id }}">Edit Contents</a></span>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				{% if not project.taken %}
+				<span><a href="/project/taken/{{ project.id }}">Mark this project as taken</a></span>
+				{% endif %}
+				{% if project.taken %}
+				<span><a href="/project/untaken/{{ project.id }}">Mark this project as not taken</a></span>
+				{% endif %}
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span><a href="/project/delete/{{ project.id }}">Remove this project</a></span>
+				{% endif %}
+				<p>offered by 
+			{% for supervisor in project.supervisors %}
+				<span>&nbsp;<abbr title=''>{{ supervisor.fullname }}</abbr>&nbsp;</span>	
+			{% endfor %}
+			</p>
+			<p>Description: <span style="color:grey;">{{ project.description }}</span></p>
+			<p>Expectations / Skillset required: <span style="color:grey;">{{ project.skillset }}</span></p>
+			<p><span style="color:grey;">{{ project.summer }}</span></p>
+			{% if project.is_fileuploaded %}	
+			<p><a target = "_blank" href="{{ MEDIA_URL }}{{project.fileuploaded.url }}">download attached file</a></p>
+			{% endif %}
+			<hr>
+		{% endif %}
+		{% endfor %}
+		{% endif %}			
+		</div>
+		
+	</div>
+	</div>
+	<div id="footer">
+		<center>Developed by <abbr title="A project of NSA, IIITS">Sahal Sajjad</abbr></center>
+	
+	</div>
+</body>
+</html>

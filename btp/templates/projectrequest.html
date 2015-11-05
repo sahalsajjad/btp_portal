@@ -1,0 +1,18 @@
+{% load staticfiles %}
+{% load humanize %}
+<center>
+	{% if project_requests_exist %}
+		<center><h3>You have a Project Request </h3></center>
+		{% for request in project_requests %}
+			<a href="projects">{{ request.project.title }}</a>
+			<p>Submitted by :  {{ request.submitter.first_name }} {{ request.submitter.last_name }}</p>
+		
+			
+			<a href="projectaccept/{{request.id}}"><button id="pr-accept" class="btn btn-success"  >Accept</button></a>
+		
+			&nbsp;&nbsp;&nbsp;
+		
+			<a href="projectreject/{{request.id}}"><button id="pr-reject" class="btn btn-danger" >No, Thanks</button></a>
+		{% endfor %}
+	{% endif %}	
+</center>

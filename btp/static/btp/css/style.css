@@ -1,0 +1,93 @@
+#nav-1{
+	min-height:70px;
+	background:#003D3D;
+	color:white;
+}
+#nav-1 a{
+	color:white;
+}
+#nav-2{
+	min-height: 100px;
+	background:#195050;
+	
+}
+.content-wrapper{
+
+	min-height:70vh;
+
+}
+#nav-2 ul li{
+	display:inline;
+	list-style: none;
+}
+#subheader{
+	background:#195050;
+}
+#subheader center{
+	color:white;
+	font-variant: small-caps;
+	font-size: 22px;
+}
+.nav-2-ul-li-a{
+	color: aquamarine;
+font-variant: small-caps;
+font-size: 18px;
+font-weight: bold;
+top:50px !important;
+padding: 2px 14px;
+position: relative;
+}
+.nav-2-ul-li-a:hover{
+	color:aquamarine;
+	border-top:5px solid;
+	border-bottom: 5px solid;
+	text-decoration: none;
+}
+.scroller{
+	overflow:auto;
+	width:150%;
+	height:60vh;
+}
+.scroller ul li{
+	list-style: none;
+}
+.event-date{
+	font-size: 16px;
+	color:#195050;
+}
+.event-title{
+	font-size:15px;
+	color:grey;
+}
+.login-block{
+	position:absolute;
+	left:60vw;
+	
+}
+.profile-block{
+	position:absolute;
+	left:calc(75%);
+	color:white;
+	font-size: 18px;
+}
+
+.drop-ul-li-a{
+font-size: 13px;
+position: relative;
+top: 3px !important;
+color: #003D3D;
+padding: 10px;
+}
+.add-faculty{
+	margin:10px;
+	font-size: 22px;
+	color:green;
+}
+.project-title {
+	font-size: 22px;
+}
+#footer{
+	min-height: 40px;
+	background:#195050;
+	color:white;
+}

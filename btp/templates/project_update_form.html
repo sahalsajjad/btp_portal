@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<html>
+{% include "head.html" %}
+<body>
+	{% include "nav.html" %}
+	<div class="container">
+	<form action="" method="post">
+		{% csrf_token %}
+		<h3>Title / Domain of the project</h3>
+		<p>{{ form.title }}</p>
+		<h3>Description</h3>
+		<p>{{ form.description }}</p>
+		<h3>Expectation / Skillset from the project</h3>
+		<p>{{ form.skillset }}</p>
+		<p>{{ form.fileuploaded }}</p>
+    	
+    	<input class="btn btn-info" type="submit" value="Update" />
+	</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% load staticfiles %}
+{% load humanize %}
+<html>
+<head>
+	<title>{{ title }}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'btp/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'btp/css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'btp/css/font-awesome.min.css' %}">
+	<script src="{% static 'btp/js/jquery.js' %}"></script>
+	<script src="{% static 'btp/js/script.js' %}"></script>
+
+</head>
+<body>
+	<div class="container-fluid" id="nav-1">
+		<center><h2><a href="{% url 'btp:homepage' %}"><i class="fa fa-gg-circle"></i></a>
+ {{ main_header }}</h2></center>
+	</div>
+	<div class="container-fluid" id="nav-2">
+		<div class="col-lg-offset-1 col-md-offset-1">
+			<ul>
+				{% for nav in nav_list  %}
+					<li><a href="{{ nav }}">{{ nav }}</a></li>
+				{% endfor %}
+			</ul>
+			<div class="profile-block">
+					<i class="fa fa-user"></i>
+ {{ user}}
+			</div>
+		</div>
+	</div>
+	<div class="container content-wrapper">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-0 col-xs-offset-0">
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" >
+					<center><h3> Overview</h3></center>
+					<p class="text-muted">This portal is intended for faculties who offer BTPs and students of UG-3.<br><br>
+							Faculties can post a minimum of two projects and a maximum of three projects.<br><br>
+							Please refer to the <a href="docs" class="text-info">documentation</a> for further details.
+					</p>
+					<center><a href="project/new"><button class="btn btn-default" style="margin:50px 10px;">Post a Project</button></a><a href="projects"><button class="btn btn-default" style="margin:50px 10px;">View Projects</button></a></center>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="col-lg-offset-4 col-md-offset-4 col-xs-12 col-sm-12">
+						<center><h3>Events and Dates</h3></center>
+						<div class="scroller">
+							<ul>
+							{% for event in events %}
+								<li><span class="event-date">{{ event.startdate}}
+								{% if event.startdate != event.enddate %}
+								 - {{ event.enddate }} 
+								{% endif %}
+								</span>
+								<p class="event-title">{{ event.event}}</p>
+								</li>
+							{% endfor %}	
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<center>Developed by <abbr title="A project of NSA, IIITS">Sahal Sajjad</abbr></center>
+	</div>
+</body>

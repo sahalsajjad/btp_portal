@@ -1,0 +1,29 @@
+{% load staticfiles %}
+{% load humanize %}
+<html>
+{% include "head.html" %}
+<body>
+	{% include "nav.html" %}
+	{% include "subheader.html" %}
+	<div class="container content-wrapper">
+	
+	{% for f in faculty %}
+	<hr>
+	<h4 class="text-success">{{ f.fullname }}</h4>
+	{% if f.no_projects %}
+	<h5><center style="color:grey;">No Projects posted so far.</center></h5>
+	{% endif %}
+	<ol>
+	{% for p in f.get_projects %}
+	<li>{{ p }}</li><hr>
+	{% endfor %}
+	</ol>
+
+	{% endfor %}
+	<br>
+	</div>
+	<div id="footer">
+		<center>Developed by <abbr title="A project of NSA, IIITS">Sahal Sajjad</abbr></center>
+	</div>
+</body>
+</html>

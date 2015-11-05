@@ -1,0 +1,49 @@
+{% load staticfiles %}
+{% load humanize %}
+<html>
+{% include "head.html" %}
+<body>
+	{% include "nav.html" %}
+	{% include "projectrequest.html" %}
+	<div class="container content-wrapper">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-0 col-xs-offset-0">
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" >
+					<center><h3> Overview</h3></center>
+					<p class="text-muted">This portal is intended for faculties  and UG-3 students.<br><br>
+							Faculties are requested to enter minimum one and preferably two projects.<br><br>
+							Please refer to the <a href="docs" class="text-info">documentation</a> for further details.
+					</p>
+					<center>
+						{% if is_faculty %}
+						<a href="project/new"><button class="btn btn-default" style="margin:50px 10px;">Post a Project</button></a>
+						{% endif %}
+						<a href="projects"><button class="btn btn-default" style="margin:50px 10px;">View Projects</button></a>
+					</center>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="col-lg-offset-4 col-md-offset-4 col-xs-12 col-sm-12">
+						<center><h3>Events and Dates</h3></center>
+						<div class="scroller">
+							<ul>
+							{% for event in events %}
+								<li><span class="event-date">
+								{% if event.startdate != event.enddate %}
+								{{ event.startdate | date:'d M' }} -
+								{% endif %}
+								{{ event.enddate | date:'d M Y' }} 
+								</span>
+								<p class="event-title">{{ event.event}}</p>
+								</li>
+							{% endfor %}
+							</ul>	
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<center>Developed by <abbr title="A project of NSA, IIITS">Sahal Sajjad</abbr></center>
+	</div>
+</body>

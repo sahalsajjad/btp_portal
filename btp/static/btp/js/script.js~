@@ -1,0 +1,15 @@
+$(document).ready(function(){
+	
+	$('#project-form-paid-group').hide();
+        $('#project-form-summer').change(function(){
+	alert($('#project-form-summer').attr('name'));
+        if($('#project-form-summer').attr('value')=="{{=T('YES')}}")
+        {
+	    alert('done');
+            $('#project-form-paid-group').show();
+        }
+        else {
+            $('#project-form-paid-group').hide();
+        }});
+	
+});

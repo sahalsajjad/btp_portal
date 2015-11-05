@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<div class="container-fluid" id="nav-1">
+		<center><h2><a href="{% url 'btp:homepage' %}"><i class="fa fa-gg-circle"></i></a>
+ {{ main_header }}</h2></center>
+ 
+	</div>
+	<div class="container-fluid" id="nav-2">
+		<div class="col-lg-offset-1 col-md-offset-1">
+			<ul>
+				{% for nav in nav_list  %}
+					<li><a class="nav-2-ul-li-a" href="/btp/{{ nav }}">{{ nav }}</a></li>
+				{% endfor %}
+			</ul>
+			{% ifequal user.is_active  True %}
+			<div class="profile-block">
+					<i class="fa fa-user"></i>
+ 			{{ user.get_full_name }}  
+ 				
+    				<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i style="color:white;" class="fa fa-cog"></i>
+    				</a>
+    				<ul class="dropdown-menu drop-ul pull-right">
+      					<li><a class="drop-ul-li-a"href="changepassword">Change Password</a></li>
+      					<li><a class="drop-ul-li-a" href="signout">Sign out</a></li>
+    				</ul>
+  				
+
+			</div>
+			{% endifequal %}
+			{% ifnotequal user.is_active  True %}
+			<div class="login-block">
+					<form method="post" action="" class="form form-inline">
+						{% csrf_token %}
+						{{ form.as_table }}
+						<input type="submit" class="btn-default btn" value="Login"/>
+						
+					</form>
+			</div>
+			{% endifnotequal %}
+			
+		</div>
+	</div>

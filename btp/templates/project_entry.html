@@ -1,0 +1,81 @@
+{% load staticfiles %}
+<html>
+{% include "head.html" %}
+<body>
+	{% include "nav.html" %}
+	<div class="container-fluid content-wrapper">
+	  <div class="col-lg-offset-3">
+		<div class="col-lg-6">
+			<h3>{{ sub_header }}</h3>
+            {% if messages %}
+
+            {% for message in messages %} {{ message }} {% endfor %} 
+
+            {% endif %}
+    		<form method="post" action="." enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.errors }}
+        		<div class="form-group">
+        			<label for="project-form-title">{{ form.title.label }}</label>
+					{{ form.title }}{{form.title.errors}}
+        		</div>
+        		<div class="form-group">
+            		<label for="project-form-faculty">{{ form.faculty1.label}}</label>
+            		{{ form.faculty1 }}{{form.faculty1.errors}} 
+                    <span id="add-1" class="add-faculty"><i class="fa fa-plus-circle"></i></span>
+
+        		</div>
+                <div id="faculty-optional-1" class="form-group">
+                    <label for="project-form-faculty">{{ form.faculty2.label}}</label>
+                    {{ form.faculty2 }}{{form.faculty2.errors}} 
+                    <span id="add-2" class="add-faculty"><i class="fa fa-plus-circle"></i></span>
+                </div>
+                <div id="faculty-optional-2" class="form-group">
+                    <label for="project-form-faculty">{{ form.faculty3.label}}</label>
+                    {{ form.faculty3 }}{{form.faculty3.errors}} 
+                    <span id="add-3" class="add-faculty"><i class="fa fa-plus-circle"></i></span>
+                </div>
+                <div id="faculty-optional-3" class="form-group">
+                    <label for="project-form-faculty">{{ form.faculty4.label}}</label>
+                    {{ form.faculty4 }}{{form.faculty4.errors}} 
+                    <span id="add-4" class="add-faculty"><i class="fa fa-plus-circle"></i></span>
+                </div>
+                <div id="faculty-optional-4" class="form-group">
+                    <label for="project-form-faculty">{{ form.faculty5.label}}</label>
+                    {{ form.faculty5 }}{{form.faculty5.errors}} 
+                </div>
+                
+        		<div class="form-group">
+            		<label for="project-form-description">{{ form.description.label}}</label>
+            		{{ form.description }}{{form.description.errors}}
+        		</div>
+                <div class="form-group">
+                    <label for="project-form-fileupload">{{ form.fileupload.label}}</label>
+                    {{ form.fileupload }}{{form.fileupload.errors}}
+                </div>
+        		<div class="form-group">
+        			<label for="project-form-skillset">{{ form.skillset.label }}</label>
+					{{ form.skillset }}{{form.skillset.errors}}
+        		</div>
+        		<div class="form-group">
+            		<label for="project-form-email">{{ form.email.label}}</label>
+            		{{ form.email }}{{form.email.errors}}
+        		</div>
+        		<div class="form-group">
+            		<label for="project-form-summer">{{ form.summer.label}}</label>
+            		{{ form.summer }}{{form.summer.errors}}
+        		</div>
+        		<div class="form-group" id="project-form-paid-group">
+            		<label for="project-form-paid">{{ form.paid.label}}</label>
+            		{{ form.paid }} {{form.paid.errors}}
+        		</div>
+        		<button type="submit" class="btn btn-primary">Post Project</button>
+    		</form>
+    	</div>
+      </div>
+    </div>
+    <div id="footer">
+		<center>Developed by <abbr title="A project of NSA, IIITS">Sahal Sajjad</abbr></center>
+	</div>	
+</body>
+</html>
