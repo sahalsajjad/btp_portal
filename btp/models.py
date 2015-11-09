@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 
 
 
@@ -94,6 +94,12 @@ class Event(models.Model):
 	enddate= models.DateField()
 	def __str__(self):
 		return self.event
+	def days_to_start(self):
+		self.startdate - timezone.now().date 
+	def days_to_end(self):
+		self.enddate - timezone.now().date
+	
+		
 
 class Preference(models.Model):
 	student = models.OneToOneField(User)

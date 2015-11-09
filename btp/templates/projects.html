@@ -17,10 +17,14 @@
 		
 		{% if not projects_flag %}
 		{% for project in projects %}
-		<h1>{{ project.pp }}</h1>
+		
 		  {% if not project.dont_show_project %}
 			
-			<span class="project-title"><a class="text-success">{{ project.title }}</a></span>
+			<span class="project-title"><a class="text-success">{{ project.title }} {% if project.taken %}
+				&nbsp;&nbsp;[ PROJECT TAKEN ]
+				{% endif %}
+				</a></span>
+                                {% if stagea %}
 				{% if project.editable %}
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<span><a href="/project/add/{{ project.id }}">Add Faculty</a></span>	
@@ -47,7 +51,9 @@
 			{% if project.is_fileuploaded %}	
 			<p><a target = "_blank" href="{{ MEDIA_URL }}{{project.fileuploaded.url }}">download attached file</a></p>
 			{% endif %}
+			{% endif %}
 			<hr>
+				
 		{% endif %}
 		{% endfor %}
 		{% endif %}			

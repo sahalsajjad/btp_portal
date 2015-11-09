@@ -15,10 +15,13 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse,HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.utils import timezone
+from datetime import date
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
-PROJECT_MAX = 3 
+PROJECT_MAX = 3
+
+
 def is_faculty(user):
 	'''
 	Returns Whether the requested user is a faculty or not
@@ -55,6 +58,17 @@ def summerParser(str_in):
 			}
 	return SUMMERPARSER[str_in]
 
+def stage_over(stage):
+		'''
+		returns whether a stage is over or not.
+		'''
+		event = Event.objects.get(identifier = stage)		
+		
+		if timezone.now().date() > event.enddate:
+			return True
+		else:
+			return False
+			
 ##########################################################################################################
 class HomePageView(FormView):
 	'''
@@ -70,15 +84,19 @@ class HomePageView(FormView):
 		context = super(HomePageView, self).get_context_data(**kwargs)
 		context = { 'title':'BTP@IIITS', 'main_header':'B-Tech Project (BTP) Portal - IIIT - S' ,'nav_list':['faculty','projects','docs'], 'nav_list_len':3 , 'form': AuthenticationForm }
 		context['project_requests_exist'] = False
-		PROJECT_REQUESTS = []
-		user = self.request.user	
-		projectrequests = ProjectRequests.objects.all()
-		for pr in projectrequests:
-			if pr.user == user:
-				PROJECT_REQUESTS.append(pr)
-				context['project_requests_exist'] = True				
-	        context['project_requests'] = PROJECT_REQUESTS    
-        	
+		context['now'] = timezone.now().date
+		if not stage_over('STAGE_A'):
+			context['stagea'] = True			
+			PROJECT_REQUESTS = []
+			user = self.request.user	
+			projectrequests = ProjectRequests.objects.all()
+			for pr in projectrequests:
+				if pr.user == user:
+					PROJECT_REQUESTS.append(pr)
+					context['project_requests_exist'] = True				
+		        context['project_requests'] = PROJECT_REQUESTS    
+		else:
+			context['stagea'] = False
 		events = Event.objects.all()
 		settings.DATE_FORMAT = '%d %b %Y'
 		context['events']=events
@@ -237,6 +255,7 @@ class ProjectPageView(FormView):
 		context = { 'title':'Projects | BTP @ IIITS', 'main_header':'B-Tech Project (BTP) Portal - IIIT - S', 'sub_header':' Projects' }
 		context['nav_list'] = ['faculty','projects','docs']
 		context['nav_list_len'] = 3
+		
 		FACULTYCALIBERATE = Faculty.objects.all()
 		for faculty in FACULTYCALIBERATE:
 			faculty.update_projectcount()
@@ -267,8 +286,9 @@ class ProjectPageView(FormView):
 			p_dict['summer'] = summerParser(project.summer)
 			p_dict['editable'] = False
 			p_dict['show_project'] = False
-			
-			if project.supervisor == 'NA' or project.supervisor == '':
+			if not stage_over('STAGE_A'):
+			   context['stagea'] = True
+			   if project.supervisor == 'NA' or project.supervisor == '':
 				
 				p_dict['dont_show_project']=True
 				prs = ProjectRequests.objects.filter(project__id = project.id)
@@ -278,8 +298,12 @@ class ProjectPageView(FormView):
 					fac.update_projectcount()	
 					fac.save()	
 				
-			else:
+			   else:
 				p_dict['dont_show_project']=False
+			
+			else:
+			    context['stagea'] = False					
+						
 			for user in supervisors : 
 				if self.request.user.get_username() == user['username']:
 					p_dict['editable'] = True

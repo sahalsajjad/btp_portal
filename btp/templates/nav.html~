@@ -32,8 +32,8 @@
     				<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i style="color:white;" class="fa fa-cog"></i>
     				</a>
     				<ul class="dropdown-menu drop-ul pull-right">
-      					<li><a class="drop-ul-li-a-small"href="changepassword">Change Password</a></li>
-      					<li><a class="drop-ul-li-a-small" href="signout">Sign out</a></li>
+      					<li><a class="drop-ul-li-a"href="changepassword">Change Password</a></li>
+      					<li><a class="drop-ul-li-a" href="signout">Sign out</a></li>
     				</ul>
   				
 

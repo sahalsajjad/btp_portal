@@ -64,19 +64,41 @@ position: relative;
 	left:60vw;
 	
 }
+.login-block-small{
+	margin-top:20%;
+	top:40vh;
+}
 .profile-block{
 	position:absolute;
 	left:calc(75%);
 	color:white;
 	font-size: 18px;
 }
-
+.profile-block-small{
+	margin-top:1%;
+	color:white;
+}
+.highlight-grey{
+background:#D1E0E0;
+}
+.dropdown-menu{
+	position:absolute;
+	top:10%;
+	
+}
 .drop-ul-li-a{
 font-size: 13px;
 position: relative;
 top: 3px !important;
 color: #003D3D;
 padding: 10px;
+}
+.drop-ul-li-a-small{
+font-size: 13px;
+position:relative;
+top: 5px !important;
+color: #003D3D;
+padding: 2px;
 }
 .add-faculty{
 	margin:10px;

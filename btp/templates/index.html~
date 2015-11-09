@@ -15,10 +15,8 @@
 							Please refer to the <a href="docs" class="text-info">documentation</a> for further details.
 					</p>
 					<center>
-						{% if stagea %}
 						{% if is_faculty %}
 						<a href="project/new"><button class="btn btn-default" style="margin:50px 10px;">Post a Project</button></a>
-						{% endif %}
 						{% endif %}
 						<a href="projects"><button class="btn btn-default" style="margin:50px 10px;">View Projects</button></a>
 					</center>
